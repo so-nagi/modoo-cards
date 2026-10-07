@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) { return request.auth != null && request.auth.uid == uid; }
+    match /users/{uid}/settings/ui {
+      allow read: if owner(uid);
+      allow create, update: if owner(uid)
+        && request.resource.data.keys().hasOnly(['skin','theme','accent','sounds','volume','cardFontSize','heatmap','remainingTime','zen'])
+        && request.resource.data.skin in ['classic','folder','line','monochrome']
+        && request.resource.data.theme in ['light','neutral','dark']
+        && request.resource.data.accent is string && request.resource.data.accent.matches('^#[0-9a-fA-F]{6}$')
+        && request.resource.data.sounds is bool
+        && request.resource.data.volume is number && request.resource.data.volume >= 0 && request.resource.data.volume <= 1
+        && (!('cardFontSize' in request.resource.data) || (request.resource.data.cardFontSize is int && request.resource.data.cardFontSize >= 14 && request.resource.data.cardFontSize <= 40))
+        && request.resource.data.heatmap is bool && request.resource.data.remainingTime is bool && request.resource.data.zen is bool;
+      allow delete: if owner(uid);
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

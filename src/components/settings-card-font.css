@@ -1,0 +1,9 @@
+.card-font-settings h2 label{font:inherit;color:inherit}
+.card-font-controls{display:flex;align-items:center;gap:14px;margin:18px 0}
+.card-font-controls input[type=range]{flex:1;min-width:70px;height:32px}
+.card-font-controls input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+.card-font-controls output{min-width:42px;text-align:right;font-size:.74rem;font-variant-numeric:tabular-nums;color:var(--text)}
+.card-font-controls button{flex:none;white-space:nowrap;font-size:.65rem;padding:7px 10px}
+.card-font-sample>.card-frame{height:260px;min-height:260px}
+.card-font-settings>.fine-print{line-height:1.8}
+@media(max-width:480px){.card-font-controls{gap:9px}.card-font-controls button{padding:7px;font-size:.62rem}}

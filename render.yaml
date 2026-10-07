@@ -1,0 +1,27 @@
+# Each fork supplies its own Firebase project. No shared project defaults.
+services:
+  - type: web
+    name: modoo-cards
+    runtime: docker
+    plan: free
+    region: singapore
+    numInstances: 1
+    autoDeployTrigger: off
+    healthCheckPath: /api/health
+    envVars:
+      - key: MODOO_LOCAL_AUTH
+        value: "0"
+      - key: MODOO_DATA_DIR
+        value: /tmp/modoo-cards-cache
+      - key: MODOO_FIREBASE_CONFIG
+        sync: false
+      - key: MODOO_DATABASE_URL
+        sync: false
+      - key: MODOO_ALLOWED_ORIGINS
+        sync: false
+      - key: MODOO_PUBLIC_ORIGIN
+        sync: false
+      - key: VITE_SOURCE_URL
+        sync: false
+      - key: TZ
+        value: Asia/Seoul

@@ -1,0 +1,62 @@
+.decks-view > .study-start { box-sizing: border-box; height: 96px; min-height: 96px; }
+.decks-view > .study-start > div { flex: 1; }
+.deck-section-actions { display: flex; align-items: center; gap: 13px; flex: none; }
+.deck-view-toggle { display: flex; align-items: center; padding: 2px; border: 1px solid var(--line); border-radius: 5px; background: var(--field-bg); }
+.deck-view-toggle > button { width: 28px; height: 26px; padding: 4px; border-radius: 3px; background: transparent; color: var(--muted); }
+.deck-view-toggle > button[aria-pressed=true] { background: var(--card-bg); color: var(--text); box-shadow: 0 1px 3px #0000000d; }
+.deck-count-label { display: none; }
+.deck-row > span > b { font-weight: inherit; }
+.decks-view .deck-list .deck-row.is-important {
+  background-color: color-mix(in srgb,var(--accent) 20%,var(--card-bg));
+}
+.deck-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px 12px; padding: 9px 0 6px; }
+.deck-gallery .deck-gallery-card {
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 16px 6px;
+  min-width: 0;
+  min-height: 142px;
+  padding: 16px 13px 14px;
+  border: 1px solid color-mix(in srgb,var(--card-bg) 74%,var(--line));
+  border-radius: .8rem;
+  background: var(--card-bg);
+  box-shadow: 0 5px 13px #2f241813;
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  transition: background-color .14s ease-out, outline-color .14s ease-out;
+}
+.deck-gallery .deck-gallery-card.selected { border-color: color-mix(in srgb,var(--accent) 65%,var(--line)); background-color: color-mix(in srgb,var(--accent) 5%,var(--card-bg)); }
+.deck-gallery .deck-gallery-card.menu-open { z-index: 16; }
+.deck-gallery-card > .deck-name { grid-column: 1 / -1; align-self: start; padding-right: 22px; }
+.deck-gallery-card .deck-title-button { align-items: flex-start; padding: 3px 0; gap: 6px; font-size: .74rem; line-height: 1.55; }
+.deck-gallery-card .deck-title-button > svg { margin-top: 2px; flex: none; }
+.deck-gallery-card .deck-title-button > span { white-space: normal; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.deck-gallery-card .tree-toggle,.deck-gallery-card .tree-spacer { flex: none; }
+.deck-gallery-card > span { display: grid; align-self: end; gap: 6px; }
+.deck-gallery-card .deck-count-label { display: block; color: var(--muted); font-size: .57rem; font-weight: 400; white-space: nowrap; }
+.deck-gallery-card > span > b { font-size: .92rem; line-height: 1; }
+.deck-gallery-card > .deck-menu-wrap { position: absolute; right: 7px; top: 9px; }
+.deck-gallery-card .deck-menu { top: 27px; }
+/* Importance owns the paper fill; selection keeps its border, hover outlines the whole card. */
+.decks-view .deck-gallery .deck-gallery-card.is-important {
+  background-color: color-mix(in srgb,var(--accent) 20%,var(--card-bg));
+  background-image: none;
+}
+.decks-view .deck-gallery .deck-gallery-card:hover,
+.decks-view .deck-gallery .deck-gallery-card:focus-within {
+  outline-color: color-mix(in srgb,var(--accent) 65%,var(--line));
+  background-color: color-mix(in srgb,var(--accent) 9%,var(--card-bg));
+}
+.decks-view .deck-gallery .deck-gallery-card.is-important:hover,
+.decks-view .deck-gallery .deck-gallery-card.is-important:focus-within {
+  background-color: color-mix(in srgb,var(--accent) 28%,var(--card-bg));
+}
+.deck-gallery-card .deck-title-button:hover { background: transparent; color: var(--text); }
+@media(prefers-reduced-motion:reduce) {
+  .deck-gallery .deck-gallery-card { transition: none; }
+}
+@media(max-width:480px) {
+  .deck-gallery { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .deck-gallery .deck-gallery-card { min-height: 128px; }
+  .deck-section-actions { gap: 9px; }
+  .deck-gallery-card .deck-title-button > svg { display: block; }
+}

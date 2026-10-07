@@ -1,0 +1,17 @@
+**
+!Dockerfile
+!requirements-runtime.txt
+!package.json
+!package-lock.json
+!index.html
+!tsconfig.json
+!vite.config.ts
+!src/
+!src/**
+!public/
+!public/**
+!samples/
+!samples/sample-vocabulary.tsv
+!server/
+!server/*.py
+server/**/__pycache__/

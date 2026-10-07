@@ -1,0 +1,35 @@
+{
+  "name": "modoo-cards-open",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4191",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4191",
+    "test": "node --experimental-strip-types --test tests/integration/*.test.ts tests/features/*.test.ts",
+    "setup": "node scripts/setup-self-host.mjs",
+    "build:hosting": "node scripts/build-hosting.mjs",
+    "check:release": "node scripts/check-public-release.mjs"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "firebase": "^12.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "6.0.2",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  },
+  "license": "AGPL-3.0-or-later",
+  "engines": {
+    "node": ">=22.13"
+  }
+}

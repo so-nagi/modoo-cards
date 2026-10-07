@@ -1,0 +1,10 @@
+/* Keep the reveal/rating area above mobile navigation without changing desktop cards. */
+@media (max-width: 760px) {
+  .main-paper .study-view .page-heading { margin-bottom: 10px; }
+  .main-paper .study-view .study-meta { margin: 6px 0; }
+  .main-paper .study-view .card-topline { margin-top: 10px; }
+  .main-paper .study-view > .card-frame { height: var(--mobile-study-card-height, 200px); min-height: 96px; }
+  .main-paper .study-view .study-tools { margin-top: 8px; }
+  .main-paper .study-view .study-speech-status { min-height: 1.4em; margin-bottom: 8px; }
+  .main-paper .study-view .answer-area { min-height: 64px; margin-bottom: 16px; }
+}

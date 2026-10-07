@@ -1,0 +1,4 @@
+.modal.discard-confirmation{width:min(420px,100%);animation:none}
+.discard-confirmation>p{font-size:.78rem;line-height:1.8;margin:0;color:var(--text-soft)}
+.discard-confirmation>.form-footer{gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.discard-confirmation>.form-footer>button{font-size:.7rem;white-space:normal}

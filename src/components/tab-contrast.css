@@ -1,0 +1,4 @@
+/* Readable ink for the Classic active tab's accent fill. */
+.app-shell .main-workspace nav.page-tabs > button.active {
+  color: var(--active-tab-text, #ffffff);
+}

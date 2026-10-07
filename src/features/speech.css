@@ -1,0 +1,4 @@
+.study-tools:has(.study-read-button){margin-bottom:4px}
+.study-read-button{min-width:76px}
+.study-speech-status{min-height:2.8em;margin:0 0 12px;text-align:center;font-size:.61rem;line-height:1.4;color:var(--muted);overflow-wrap:anywhere}
+.study-speech-status[data-state=error]{color:var(--text-soft)}

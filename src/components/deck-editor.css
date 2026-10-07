@@ -1,0 +1,15 @@
+.modal.deck-editor-modal{width:min(560px,100%)}
+.deck-editor-form{display:grid;gap:20px;min-width:0}
+.deck-editor-form>.field-label{gap:7px}
+.deck-editor-form .field-label>small,.deck-description-field>.field-label>small{font-size:.65rem;font-weight:400;color:var(--muted)}
+.deck-description-field{display:grid;gap:8px;min-width:0}
+.deck-description-field>.field-label{display:flex;align-items:baseline;gap:8px;margin:0}
+.deck-editor-form>.form-footer{margin-top:0}
+.deck-editor-notice{margin:0;font-size:.75rem;color:var(--text-soft)}
+.deck-editor-tools{margin-top:22px;border-top:1px solid var(--line);padding-top:18px}
+.deck-editor-tools>h3{font-size:.74rem;margin-bottom:9px;color:var(--muted);font-weight:500}
+.deck-editor-tools>button{display:flex;width:100%;padding:12px 10px;gap:12px;text-align:left;border-radius:6px;background:transparent;min-width:0}
+.deck-editor-tools>button:hover{background:var(--surface-bg)}
+.deck-editor-tools>button>span{display:grid;gap:5px;flex:1;min-width:0}
+.deck-editor-tools strong{font-size:.78rem;font-weight:550;color:var(--text)}
+.deck-editor-tools small{font-size:.67rem;line-height:1.7;color:var(--muted)}

@@ -1,0 +1,22 @@
+.cloze-builder{min-width:0}
+.cloze-mode-bar{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:0 0 8px;font-size:.62rem;color:var(--muted)}
+.cloze-mode-bar>button{flex-shrink:0;font-size:.59rem;padding:4px 5px;background:none;color:var(--text-soft);text-decoration:underline;text-underline-offset:3px}
+.cloze-builder textarea{min-height:130px}
+.cloze-selection{font-size:.62rem;color:var(--text-soft);line-height:1.65;margin:8px 0;min-height:2.8em;overflow-wrap:anywhere;white-space:pre-wrap}
+.cloze-selection strong{font-weight:550;color:var(--text)}
+.cloze-selection>span{display:block;color:var(--muted)}
+.cloze-create-fields{display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+.cloze-create-fields>label,.cloze-blank-options>label{display:flex;flex-direction:column;gap:5px;font-size:.6rem;color:var(--text-soft);min-width:0}
+.cloze-create-fields input,.cloze-create-fields select,.cloze-blank-options input,.cloze-blank-options select{font-size:.66rem;padding:7px 8px;min-width:0;width:100%;box-sizing:border-box}
+.cloze-create-button{width:100%;font-size:.65rem;margin-top:10px;padding:9px}
+.cloze-blanks{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.cloze-blanks-heading{font-size:.63rem;line-height:1.7;margin-bottom:8px}
+.cloze-blanks-heading>strong{font-weight:550;display:block}
+.cloze-blanks-heading>span{display:block;font-size:.58rem;color:var(--muted)}
+.cloze-blank-row{border:1px solid var(--line);background:var(--surface-bg);border-radius:4px;padding:9px;margin-top:8px}
+.cloze-blank-title{display:flex;align-items:flex-start;gap:8px;justify-content:space-between;margin-bottom:8px}
+.cloze-blank-title>mark{background:var(--soft-bg);color:var(--text);font-size:.69rem;line-height:1.7;padding:0 3px;overflow-wrap:anywhere;white-space:pre-wrap}
+.cloze-blank-title>button{font-size:.58rem;background:none;padding:3px 0;color:var(--muted);flex-shrink:0}
+.cloze-blank-options{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}
+.cloze-editor-status{display:block;font-size:.6rem;color:var(--muted);line-height:1.7;margin-top:5px}
+.cloze-source-notice{font-size:.63rem;line-height:1.8;color:var(--text-soft);margin:0 0 8px}

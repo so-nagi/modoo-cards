@@ -1,0 +1,8 @@
+Modoo Cards — AGPL-3.0-or-later
+Copyright (C) 2026 Modoo Cards contributors
+
+Source: https://github.com/so-nagi/modoo-cards
+License: https://www.gnu.org/licenses/agpl-3.0.html
+This software comes without warranty. You may modify and redistribute it under the license.
+If you deploy modified code, set VITE_SOURCE_URL to the public repository containing your deployed source.
+Anki 26.9.3: https://github.com/ankitects/anki/tree/26.09.3

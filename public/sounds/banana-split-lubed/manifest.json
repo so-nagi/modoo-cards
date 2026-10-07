@@ -1,0 +1,119 @@
+{
+  "format": "PCM signed 16-bit little-endian",
+  "clips": {
+    "banana-l-1.wav": {
+      "sourceSha256": "2ae39a7884d92d23ae32d315843872f48cb2edf2e50d64b1ba2ce24ee44245c8",
+      "sha256": "5fffc3323edbc5453f0957ed996abcceb304f3745a6789ffc13f20d7bc8698d3",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 5451,
+      "gain": 3.990767,
+      "peak": 0.9,
+      "rms": 0.054855
+    },
+    "banana-l-2.wav": {
+      "sourceSha256": "3373c16d50b5f68178dc4366ca5e1e1e036adca472ff4df7add6504b9a2c75c2",
+      "sha256": "c0e557d28c5cc538f0f602df508922a461a77a06c7dfc45c1d2043b04a7cf359",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 8196,
+      "gain": 2.65675,
+      "peak": 0.9,
+      "rms": 0.040109
+    },
+    "banana-l-3.wav": {
+      "sourceSha256": "7425378bc229b1c1db597a943c5304ee6cd0b04afb7d3ffc0d897740510df8c3",
+      "sha256": "db3c28cef13fc43fd7702c9acb4fc1f0183ee2f29850779d4be84943bdb724ff",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 5837,
+      "gain": 3.089205,
+      "peak": 0.9,
+      "rms": 0.05314
+    },
+    "banana-l-4.wav": {
+      "sourceSha256": "5fc9447515a7ce59bccc022ab63213193c4ef7e4a85209d1787e8307713146f3",
+      "sha256": "86555a6a63273879e66fa209e4af858393e2cb5c92e3c9861a54d8abc920ee6f",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 6720,
+      "gain": 2.739057,
+      "peak": 0.9,
+      "rms": 0.047441
+    },
+    "banana-l-5.wav": {
+      "sourceSha256": "47a71b613b10f60fc85c518caf48e8746844ae048d0c492bdf285b5528a17483",
+      "sha256": "11f5a9b6bd2307df05e91bdedc214d4e672fe9cab583fae6af6da6cf2c9085ff",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 6340,
+      "gain": 4.076944,
+      "peak": 0.9,
+      "rms": 0.056901
+    },
+    "banana-l-6.wav": {
+      "sourceSha256": "ab866428e11bc7ca67f70512d8f48a5c11a2a5975fae22849e77b536eca65228",
+      "sha256": "10afb6f97ab5f4ad9287a8a01ab837882457d31270da9f3d83d742e0d88799ce",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 6920,
+      "gain": 4.408637,
+      "peak": 0.9,
+      "rms": 0.050529
+    },
+    "banana-l-7.wav": {
+      "sourceSha256": "4adf3c68f2743551307b5eccbdaf143800d5b5767a398d7908a8cd763bbfa386",
+      "sha256": "f430e12713f9a70d6034f38c9456b66e6b34b767b87850e4fc20ce6b7dd14ce1",
+      "sampleRate": 44100,
+      "channels": 1,
+      "frames": 6263,
+      "gain": 3.990767,
+      "peak": 0.9,
+      "rms": 0.051203
+    }
+  },
+  "preview": {
+    "file": "preview.wav",
+    "sha256": "9a753ecc3e3a017412a3081c9a482552d1ac5094d014541833163b178ba822d5",
+    "sampleRate": 44100,
+    "channels": 1,
+    "frames": 178027,
+    "segments": [
+      {
+        "file": "banana-l-1.wav",
+        "startFrame": 22050,
+        "frames": 5451
+      },
+      {
+        "file": "banana-l-2.wav",
+        "startFrame": 42936,
+        "frames": 8196
+      },
+      {
+        "file": "banana-l-3.wav",
+        "startFrame": 66567,
+        "frames": 5837
+      },
+      {
+        "file": "banana-l-4.wav",
+        "startFrame": 87839,
+        "frames": 6720
+      },
+      {
+        "file": "banana-l-5.wav",
+        "startFrame": 109994,
+        "frames": 6340
+      },
+      {
+        "file": "banana-l-6.wav",
+        "startFrame": 131769,
+        "frames": 6920
+      },
+      {
+        "file": "banana-l-7.wav",
+        "startFrame": 154124,
+        "frames": 6263
+      }
+    ]
+  }
+}

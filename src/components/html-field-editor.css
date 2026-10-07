@@ -1,0 +1,6 @@
+.html-field-editor{min-width:0}
+.html-field-mode{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 6px;font-size:.6rem;color:var(--muted)}
+.html-field-mode>button{font-size:.58rem;padding:4px 5px;background:none;color:var(--text-soft);text-decoration:underline;text-underline-offset:3px}
+.html-field-editor .html-field-source{font-family:Consolas,monospace;font-size:.75rem;line-height:1.75}
+.html-field-preview{display:block;width:100%;height:140px;border:1px solid var(--line);border-radius:6px;background:#fff;pointer-events:none}
+.html-field-notice{font-size:.61rem;color:var(--muted);line-height:1.75;margin:7px 0 0}
