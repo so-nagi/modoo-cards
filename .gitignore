@@ -2,6 +2,7 @@ node_modules/
 .venv/
 .python-deps/
 dist/
+dist-demo/
 data/
 data-local/
 .data/

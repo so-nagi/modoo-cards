@@ -7,11 +7,13 @@ import { playSound } from './sound';
 import { createPhotoImportSession, remainingAfterImport } from './photoImportSession';
 import { isAnkiPackage, validateImportFile } from './packageImport';
 import './features.css';
+import { assetUrl } from '../assetUrl';
 
 export type PhotoImportDraft = {
   photo: string; filename: string; rows: VocabularyRow[]; pasted: string; rawText: string;
 };
 type Props = {
+  demo?: boolean;
   onImport(rows: { word: string; meaning: string }[]): Promise<void>; onClose(): void;
   initialDraft?: PhotoImportDraft | null;
   onDraftChange?(draft: PhotoImportDraft): void;
@@ -41,7 +43,7 @@ async function transform(source: string, rotation = false, crop?: Rect): Promise
   return canvas.toDataURL('image/png');
 }
 
-export default function PhotoImport({ onImport, onClose, initialDraft, onDraftChange, onSavingChange, onAnkiFile }: Props) {
+export default function PhotoImport({ onImport, onClose, initialDraft, onDraftChange, onSavingChange, onAnkiFile, demo = false }: Props) {
   const [photo, setPhoto] = useState(initialDraft?.photo || '');
   const [filename, setFilename] = useState(initialDraft?.filename || '');
   const [rows, setRows] = useState<VocabularyRow[]>(() => initialDraft?.rows.map(row => ({ ...row })) || []);
@@ -95,6 +97,7 @@ export default function PhotoImport({ onImport, onClose, initialDraft, onDraftCh
     if (!file || busy || saving || importSession.current.submitting) return;
     setError('');
     if (isAnkiPackage(file.name)) {
+      if (demo) { setError('APKG·COLPKG는 설치판에서 가져올 수 있습니다. 데모에는 사진, TSV, CSV를 사용하세요.'); return; }
       const problem = validateImportFile(file);
       if (problem) { setError(problem); return; }
       if (!onAnkiFile) { setError('Anki 파일은 가져오기 · 내보내기에서 선택하세요.'); return; }
@@ -143,7 +146,7 @@ export default function PhotoImport({ onImport, onClose, initialDraft, onDraftCh
     try {
       const { createWorker, OEM, PSM } = await import('tesseract.js');
       worker = await createWorker(['kor', 'eng'], OEM.LSTM_ONLY, {
-        workerPath: '/ocr/worker.min.js', corePath: '/ocr/core/tesseract-core-lstm.wasm.js', langPath: '/ocr', gzip: false,
+        workerPath: assetUrl('ocr/worker.min.js'), corePath: assetUrl('ocr/core/tesseract-core-lstm.wasm.js'), langPath: assetUrl('ocr'), gzip: false,
         logger(message) {
           if (run !== runRef.current) return;
           const recognizing = message.status === 'recognizing text';
@@ -223,14 +226,14 @@ export default function PhotoImport({ onImport, onClose, initialDraft, onDraftCh
     <p className="feature-muted">단어와 한글 뜻이 있는 사진이나 TSV·CSV 파일을 가져오세요. 내용을 확인하고 수정한 뒤 선택한 단어를 한 번에 등록해요.</p>
     <input ref={inputRef} type="file" accept="image/*" hidden onChange={event => { void chooseFile(event.target.files?.[0]); event.target.value = ''; }} />
     <input ref={cameraRef} type="file" accept="image/*" capture="environment" hidden onChange={event => { void chooseFile(event.target.files?.[0]); event.target.value = ''; }} />
-    <input ref={vocabularyFileRef} type="file" accept=".apkg,.colpkg,.tsv,.csv,.txt,text/tab-separated-values,text/csv,text/plain" aria-label="Anki·TSV·CSV 파일" hidden onChange={event => { void chooseVocabularyFile(event.target.files?.[0]); event.target.value = ''; }} />
+    <input ref={vocabularyFileRef} type="file" accept={`${demo?'':'.apkg,.colpkg,'}.tsv,.csv,.txt,text/tab-separated-values,text/csv,text/plain`} aria-label={demo?'TSV·CSV 파일':'Anki·TSV·CSV 파일'} hidden onChange={event => { void chooseVocabularyFile(event.target.files?.[0]); event.target.value = ''; }} />
     <div className="feature-upload" onDragOver={event => event.preventDefault()} onDrop={drop}>
       <div className="feature-button-row"><button type="button" onClick={() => vocabularyFileRef.current?.click()} disabled={busy || saving || preparing}><FileUp size={17} /> 단어 파일 선택</button><button type="button" onClick={() => cameraRef.current?.click()} disabled={busy || saving || preparing}><Camera size={17} /> 사진 찍기</button><button type="button" onClick={() => inputRef.current?.click()} disabled={busy || saving || preparing}><Upload size={17} /> 사진 선택</button></div>
-      <span className="feature-muted">Anki APKG · TSV · CSV / JPG · PNG · WebP — 파일을 여기에 놓아도 돼요</span>
-      {onAnkiFile&&<p className="feature-muted">Anki 파일은 덱 구조와 카드 서식을 유지하는 가져오기 화면에서 처리해요. <button type="button" disabled={busy||saving||preparing} onClick={()=>onAnkiFile()}>Anki 덱 (.apkg) 가져오기</button></p>}
+      <span className="feature-muted">{demo?'':'Anki APKG · '}TSV · CSV / JPG · PNG · WebP — 파일을 여기에 놓아도 돼요</span>
+      {!demo&&onAnkiFile&&<p className="feature-muted">Anki 파일은 덱 구조와 카드 서식을 유지하는 가져오기 화면에서 처리해요. <button type="button" disabled={busy||saving||preparing} onClick={()=>onAnkiFile()}>Anki 덱 (.apkg) 가져오기</button></p>}
       {rows.length > 0 && <p className="feature-muted">다른 사진·파일을 선택하면 현재 목록이 바뀌어요. 남은 항목은 먼저 등록해 주세요.</p>}
     </div>
-    <div className="feature-button-row"><button type="button" onClick={downloadSample}><Download size={16} /> 샘플 TSV 다운로드</button><span className="feature-muted">단어 / 한글 뜻 두 열 · UTF-8 · 최대 2,000개</span></div>
+    <div className="feature-button-row"><button type="button" onClick={downloadSample}><Download size={16} /> 샘플 TSV 다운로드</button><span className="feature-muted">단어 / 한글 뜻 두 열 · UTF-8 · {demo?'체험판 합계 최대 500장':'최대 2,000개'}</span></div>
     <p className="feature-muted">AI에게 “단어와 한글 뜻 두 열의 UTF-8 TSV 파일로 만들어 줘”라고 요청해 보세요. 샘플은 형식 확인용이며 자동 등록되지 않아요.</p>
     {filename && !photo && <p className="feature-muted">가져온 파일: {filename}</p>}
     {photo && <div className="photo-workspace">
@@ -260,6 +263,6 @@ export default function PhotoImport({ onImport, onClose, initialDraft, onDraftCh
     </>}
     <footer className="feature-footer"><button type="button" onClick={() => setRows(current => [...current, { id: `manual-${crypto.randomUUID()}`, word: '', meaning: '', selected: true, confidence: 0, source: '직접 입력' }])} disabled={busy || saving || preparing}><Plus size={17} /> 직접 추가</button><button type="button" className="primary" onClick={() => void save()} disabled={!selected.length || saving || busy || preparing}>{saving ? <LoaderCircle className="feature-spin" size={17} /> : <Check size={17} />}{saving ? '등록하는 중' : `${selected.length}개 단어 등록`}</button></footer>
     <p className="feature-privacy">사진 인식과 파일 읽기는 이 브라우저에서 처리해요. 선택한 단어와 뜻만 등록돼요.</p>
-    {onDraftChange && <p className="feature-privacy">닫았다가 다시 열면 미등록 내용을 이어서 편집할 수 있어요. 새로고침하거나 로그아웃하면 초안은 초기화돼요.</p>}
+    {onDraftChange && <p className="feature-privacy">{demo?'저장하지 않은 내용이 있으면 닫기 전에 확인합니다. 새로고침하면 미등록 초안은 사라집니다.':'닫았다가 다시 열면 미등록 내용을 이어서 편집할 수 있어요. 새로고침하거나 로그아웃하면 초안은 초기화돼요.'}</p>}
   </section>;
 }

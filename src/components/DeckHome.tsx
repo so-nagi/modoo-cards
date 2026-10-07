@@ -13,6 +13,7 @@ function initialDeckView(): DeckView {
 }
 
 type Props = {
+  demo?: boolean;
   decks: Deck[]; today: number; selected: number|null; date: string; favoritePending: number[];
   onSelect(id:number):void; onStudy(deck?:Deck):void; onAdd():void; onPhoto():void; onNew():void;
   onFiltered():void; onFiles():void; onOptions(deck:Deck):void; onRename(deck:Deck):void;
@@ -40,7 +41,7 @@ export default function DeckHome(props:Props) {
     <div className="page-heading"><h1>{date}</h1><button className="icon-button" aria-label="새 덱 만들기" onClick={onNew}><Plus size={18}/></button></div>
     <div className="daily-line"><span>오늘 학습</span><span>{today}회 복습 · {due}장 대기</span></div>
     <div className="progress-track"><div style={{width:`${today+due?today/(today+due)*100:0}%`}}/></div>
-    <div className="capture-strip"><button onClick={()=>{if(current)onSelect(current.id);onPhoto();}}><Camera size={18}/><span><strong>사진·파일로 단어 등록</strong><small>사진 OCR · APKG · TSV/CSV 파일 가져오기</small></span><ChevronRight size={15}/></button></div>
+    <div className="capture-strip"><button onClick={()=>{if(current)onSelect(current.id);onPhoto();}}><Camera size={18}/><span><strong>사진·파일로 단어 등록</strong><small>{props.demo?'사진 OCR · TSV/CSV 파일 가져오기':'사진 OCR · APKG · TSV/CSV 파일 가져오기'}</small></span><ChevronRight size={15}/></button></div>
     <div className="study-start"><div><span className="subtle">선택한 덱</span><strong title={current?.name}>{current?current.name.replaceAll('::',' / '):'덱을 선택하세요'}</strong></div><button className="primary" disabled={!current} onClick={()=>{if(current)onStudy(current);}}>복습 시작 <ArrowRight size={15}/></button></div>
     <div className="section-heading"><h2>내 덱 <span>{filtering?`${matches.length} / ${decks.length}`:decks.length}</span></h2><div className="deck-section-actions"><div className="deck-view-toggle" role="group" aria-label="덱 보기 방식"><button type="button" aria-label="목록 보기" title="목록 보기" aria-pressed={deckView==='list'} onClick={()=>setDeckView('list')}><List size={15}/></button><button type="button" aria-label="갤러리 보기" title="갤러리 보기" aria-pressed={deckView==='gallery'} onClick={()=>setDeckView('gallery')}><LayoutGrid size={14}/></button></div><button className="text-button" onClick={onNew}><Plus size={12}/> 만들기</button></div></div>
     <div className="deck-search-tools">
@@ -59,13 +60,13 @@ export default function DeckHome(props:Props) {
           </div>
           <span className="count-new"><small className="deck-count-label">새 카드</small><b>{item.newCount}</b></span><span className="count-learn"><small className="deck-count-label">학습</small><b>{item.learnCount}</b></span><span className="count-review"><small className="deck-count-label">복습</small><b>{item.reviewCount}</b></span>
           <div className="deck-menu-wrap"><button className="icon-button" aria-label={`${item.name} 메뉴`} aria-expanded={menu===item.id} onClick={()=>setMenu(menu===item.id?null:item.id)}><MoreHorizontal size={16}/></button>{menu===item.id&&<div className="deck-menu">
-            <button onClick={()=>{onEdit(item);setMenu(null);}}>덱 편집</button><button onClick={()=>{onPreview(item);setMenu(null);}}>카드 미리보기</button><button onClick={()=>{onStudy(item);setMenu(null);}}>복습 시작</button><button onClick={()=>{onOptions(item);setMenu(null);}}>덱 옵션</button><button onClick={()=>{onRename(item);setMenu(null);}}>이름 바꾸기</button>
+            <button onClick={()=>{onEdit(item);setMenu(null);}}>덱 편집</button><button onClick={()=>{onPreview(item);setMenu(null);}}>카드 미리보기</button><button onClick={()=>{onStudy(item);setMenu(null);}}>복습 시작</button>{!props.demo&&<button onClick={()=>{onOptions(item);setMenu(null);}}>덱 옵션</button>}<button onClick={()=>{onRename(item);setMenu(null);}}>이름 바꾸기</button>
             {item.filtered?<><button onClick={()=>{void onFilterAction(item,'rebuild');setMenu(null);}}>필터 다시 모으기</button><button onClick={()=>{void onFilterAction(item,'empty');setMenu(null);}}>원래 덱으로 돌려보내기</button></>:<button className="danger-text" onClick={()=>{onEmpty(item);setMenu(null);}}>덱 비우기</button>}
             <button className="danger-text" onClick={()=>{onDelete(item);setMenu(null);}}>덱 삭제</button>
           </div>}</div>
         </div>;
       })}</div>
     </>}
-    <div className="deck-bottom-tools"><button onClick={()=>{if(current)onSelect(current.id);onAdd();}}><Plus size={13}/> 직접 추가</button><button onClick={onFiltered}>집중 복습 만들기</button><button onClick={onFiles}><ArrowDownToLine size={13}/> 가져오기</button></div>
+    <div className="deck-bottom-tools"><button onClick={()=>{if(current)onSelect(current.id);onAdd();}}><Plus size={13}/> 직접 추가</button>{!props.demo&&<button onClick={onFiltered}>집중 복습 만들기</button>}<button onClick={onFiles}><ArrowDownToLine size={13}/> 가져오기</button></div>
   </div>;
 }

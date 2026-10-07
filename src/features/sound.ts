@@ -1,3 +1,5 @@
+import { assetUrl } from '../assetUrl.ts';
+
 export type SoundAction = 'tap' | 'navigate' | 'reveal' | 'again' | 'hard' | 'good' | 'easy' | 'save' | 'delete';
 export type SoundPreferences = { enabled: boolean; volume: number };
 export type SoundDiagnostics = {
@@ -16,8 +18,8 @@ export const SOUND_FILES: Record<SoundAction, string> = {
   again: 'banana-l-4.wav', hard: 'banana-l-5.wav', good: 'banana-l-6.wav', easy: 'banana-l-7.wav',
   save: 'banana-l-2.wav', delete: 'banana-l-4.wav',
 };
-export function soundUrl(action: SoundAction): string { return `/sounds/banana-split-lubed/clips/${SOUND_FILES[action]}`; }
-export function soundPreviewUrl(): string { return '/sounds/banana-split-lubed/preview.wav'; }
+export function soundUrl(action: SoundAction): string { return assetUrl(`sounds/banana-split-lubed/clips/${SOUND_FILES[action]}`); }
+export function soundPreviewUrl(): string { return assetUrl('sounds/banana-split-lubed/preview.wav'); }
 
 export function normalizeSoundPreferences(value: unknown): SoundPreferences {
   const input = (value && typeof value === 'object' ? value : {}) as Partial<SoundPreferences>;

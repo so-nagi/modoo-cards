@@ -122,9 +122,11 @@ export function cardFont(origin: string): Promise<ArrayBuffer | null> {
   let request = fontRequests.get(origin);
   if (!request) {
     const controller = new AbortController(), timeout = window.setTimeout(() => controller.abort(), 5000);
-    request = fetch(`${origin}/fonts/pretendard.otf`, { signal: controller.signal, credentials: 'same-origin' })
+    request = fetch(new URL(assetUrl('fonts/pretendard.otf'), origin).href, { signal: controller.signal, credentials: 'same-origin' })
       .then(response => response.ok ? response.arrayBuffer() : null).catch(() => null).finally(() => window.clearTimeout(timeout));
     fontRequests.set(origin, request);
   }
   return request;
 }
+
+import { assetUrl } from '../assetUrl.ts';

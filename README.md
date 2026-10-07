@@ -6,6 +6,7 @@
 
 ## 시작하기
 
+- **설치 전 체험:** [로그인 없이 데모 열기](https://so-nagi.github.io/modoo-cards/). 덱 탐색, 카드 작성, 사진 OCR와 복습 화면을 확인할 수 있습니다. 입력 자료는 방문자의 브라우저에만 저장되며 실제 Anki 복습 일정·계정 동기화는 설치판에서 제공합니다. [체험판 안내](docs/DEMO.ko.md)
 - **웹으로 배포:** [Firebase + Render 설치 안내](docs/SELF_HOSTING.ko.md)
 - **PC에서 먼저 실행:** 아래 로컬 실행
 - [카드 작성·가져오기·백업 안내](docs/USAGE.ko.md)

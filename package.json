@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4191",
     "build": "tsc --noEmit && vite build",
+    "dev:demo": "vite --config vite.demo.config.ts",
+    "build:demo": "tsc --noEmit && vite build --config vite.demo.config.ts && node scripts/check-demo-build.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4191",
     "test": "node --experimental-strip-types --test tests/integration/*.test.ts tests/features/*.test.ts",
     "setup": "node scripts/setup-self-host.mjs",

@@ -3,7 +3,7 @@ import { resolve, relative, sep } from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
-const ignored = new Set(['.git', 'node_modules', '.venv', '__pycache__', '.pytest_cache', 'dist', 'dist-hosting', 'artifacts', 'data', 'data-local', '.firebase']);
+const ignored = new Set(['.git', 'node_modules', '.venv', '__pycache__', '.pytest_cache', 'dist', 'dist-hosting', 'dist-demo', 'artifacts', 'data', 'data-local', '.firebase']);
 const generated = new Set(['.firebaserc', 'firebase.public.json', '.env.production.local', 'render.env']);
 function walk(folder) {
   return readdirSync(folder, { withFileTypes: true }).flatMap(entry => {
@@ -36,7 +36,7 @@ for (const name of ['LICENSE','THIRD_PARTY_NOTICES.md','LICENSES/Pretendard-OFL.
 }
 if (files.includes('public/fonts/hjss.ttf') || files.some(name => name.startsWith('public/sounds/cherrymx-') || name.startsWith('public/textures/'))) findings.push('Excluded assets are present');
 // Check stale build chunks too: omitting them from index.html is not sufficient.
-for (const folder of ['dist', 'dist-hosting']) {
+for (const folder of ['dist', 'dist-hosting', 'dist-demo']) {
   const path = resolve(root, folder);
   if (!existsSync(path)) continue;
   for (const name of walk(path)) {
